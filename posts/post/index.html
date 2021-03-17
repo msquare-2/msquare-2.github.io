@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<title>This is the post title | msquare-2 blog</title>
+<title>Octoprint Multiple instance creation in raspberry pi 3 | msquare-2 blog</title>
 <meta charset="utf-8">
 <meta name="generator" content="Hugo 0.80.0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,13 +17,63 @@
 
 <article>
   <header>
-    <h1>This is the post title</h1>
-    <time datetime="2021-03-17T13:20:49&#43;05:30">March 17, 2021</time>
+    <h1>Octoprint Multiple instance creation in raspberry pi 3</h1>
+    <time datetime="2020-03-17T13:20:49&#43;05:30">March 17, 2020</time>
   </header>
-  <p>This is some content</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span>args<span style="color:#f92672">){</span>
-    system<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;This is a print statement&#34;</span><span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
+  <p>Octoprint software:</p>
+<p><a href="http://octoprint.org/download/">Download Octoprint</a></p>
+<p>Win32 disk image software:
+<a href="https://sourceforge.net/projects/win32diskimager/">Diskimager</a></p>
+<p>Putty software:
+<a href="http://www.putty.org/">Download Putty</a></p>
+<p>You can run this whole block at the same time:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /etc/init.d
+sed s/octoprint/octoprint2/ &lt; octoprint | sed s/OctoPrint/OctoPrint2/ | sed s/bin<span style="color:#ae81ff">\\</span>/octoprint2/bin<span style="color:#ae81ff">\\</span>/octoprint/ &gt; octoprint2
+chmod <span style="color:#ae81ff">755</span> octoprint2
+sed s/octoprint/octoprint3/ &lt; octoprint | sed s/OctoPrint/OctoPrint3/ | sed s/bin<span style="color:#ae81ff">\\</span>/octoprint3/bin<span style="color:#ae81ff">\\</span>/octoprint/ &gt; octoprint3
+chmod <span style="color:#ae81ff">755</span> octoprint3
+sed s/octoprint/octoprint4/ &lt; octoprint | sed s/OctoPrint/OctoPrint4/ | sed s/bin<span style="color:#ae81ff">\\</span>/octoprint4/bin<span style="color:#ae81ff">\\</span>/octoprint/ &gt; octoprint4
+chmod <span style="color:#ae81ff">755</span> octoprint4
+cd /etc/default
+sed s/PORT<span style="color:#f92672">=</span>5000/PORT<span style="color:#f92672">=</span>5001/ &lt; octoprint | sed s/HOST<span style="color:#f92672">=</span>127.0.0.1/HOST<span style="color:#f92672">=</span>0.0.0.0/ | sed s/<span style="color:#ae81ff">\$</span>PORT/<span style="color:#ae81ff">\$</span>PORT<span style="color:#ae81ff">\ </span>--basedir<span style="color:#ae81ff">\ \\</span>/home<span style="color:#ae81ff">\\</span>/pi<span style="color:#ae81ff">\\</span>/.octoprint2/ &gt; octoprint2
+sed s/PORT<span style="color:#f92672">=</span>5000/PORT<span style="color:#f92672">=</span>5002/ &lt; octoprint | sed s/HOST<span style="color:#f92672">=</span>127.0.0.1/HOST<span style="color:#f92672">=</span>0.0.0.0/ | sed s/<span style="color:#ae81ff">\$</span>PORT/<span style="color:#ae81ff">\$</span>PORT<span style="color:#ae81ff">\ </span>--basedir<span style="color:#ae81ff">\ \\</span>/home<span style="color:#ae81ff">\\</span>/pi<span style="color:#ae81ff">\\</span>/.octoprint3/ &gt; octoprint3
+sed s/PORT<span style="color:#f92672">=</span>5000/PORT<span style="color:#f92672">=</span>5003/ &lt; octoprint | sed s/HOST<span style="color:#f92672">=</span>127.0.0.1/HOST<span style="color:#f92672">=</span>0.0.0.0/ | sed s/<span style="color:#ae81ff">\$</span>PORT/<span style="color:#ae81ff">\$</span>PORT<span style="color:#ae81ff">\ </span>--basedir<span style="color:#ae81ff">\ \\</span>/home<span style="color:#ae81ff">\\</span>/pi<span style="color:#ae81ff">\\</span>/.octoprint4/ &gt; octoprint4
+sudo update-rc.d octoprint2 defaults <span style="color:#ae81ff">99</span>
+sudo update-rc.d octoprint3 defaults <span style="color:#ae81ff">99</span>
+sudo update-rc.d octoprint4 defaults <span style="color:#ae81ff">99</span>
+</code></pre></div><p>Now reboot:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">    sudo reboot now
+</code></pre></div><p>The four instance addresses will be:</p>
+<blockquote>
+<p>your-ip</p>
+</blockquote>
+<blockquote>
+<p>your-ip:5001</p>
+</blockquote>
+<blockquote>
+<p>your-ip:5002</p>
+</blockquote>
+<blockquote>
+<p>your-ip:5003</p>
+</blockquote>
+<p>Check the message log:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd /var/log
+sudo cat messages
+</code></pre></div><p>Edit this file and add entries with the numbers found in the log file for all your printers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo nano /etc/udev/rules.d/99-usb.rules
+</code></pre></div><p>Here is a default example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>devpath<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>serial<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;&#34;</span>
+SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>devpath<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>serial<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;&#34;</span>
+SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>devpath<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>serial<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;&#34;</span>
+SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>devpath<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, ATTRS<span style="color:#f92672">{</span>serial<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;&#34;</span>
+</code></pre></div><p>Here is a filled in example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;1a86&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;7523&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;ANETA2&#34;</span>
+SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;2c99&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;0002&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;PRUSA&#34;</span>
+SUBSYSTEM<span style="color:#f92672">==</span><span style="color:#e6db74">&#34;tty&#34;</span>, ATTRS<span style="color:#f92672">{</span>idVendor<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;2974&#34;</span>, ATTRS<span style="color:#f92672">{</span>idProduct<span style="color:#f92672">}==</span><span style="color:#e6db74">&#34;0503&#34;</span>, SYMLINK<span style="color:#f92672">+=</span><span style="color:#e6db74">&#34;MPSM&#34;</span>
+</code></pre></div><p>Reboot again:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo reboot now
+</code></pre></div><p>Check your USB symlinks with this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ls -l /dev
 </code></pre></div>
 </article>
 

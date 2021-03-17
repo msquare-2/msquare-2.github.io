@@ -6,15 +6,19 @@
     <description>Recent content in Posts on msquare-2 blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Mar 2021 13:20:49 +0530</lastBuildDate><atom:link href="https://msquare-2.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Mar 2020 13:20:49 +0530</lastBuildDate><atom:link href="https://msquare-2.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>This is the post title</title>
+      <title>Octoprint Multiple instance creation in raspberry pi 3</title>
       <link>https://msquare-2.github.io/posts/post/</link>
-      <pubDate>Wed, 17 Mar 2021 13:20:49 +0530</pubDate>
+      <pubDate>Tue, 17 Mar 2020 13:20:49 +0530</pubDate>
       
       <guid>https://msquare-2.github.io/posts/post/</guid>
-      <description>This is some content
-public static void main(String[]args){ system.out.println(&amp;#34;This is a print statement&amp;#34;); } </description>
+      <description>Octoprint software:
+Download Octoprint
+Win32 disk image software: Diskimager
+Putty software: Download Putty
+You can run this whole block at the same time:
+cd /etc/init.d sed s/octoprint/octoprint2/ &amp;lt; octoprint | sed s/OctoPrint/OctoPrint2/ | sed s/bin\\/octoprint2/bin\\/octoprint/ &amp;gt; octoprint2 chmod 755 octoprint2 sed s/octoprint/octoprint3/ &amp;lt; octoprint | sed s/OctoPrint/OctoPrint3/ | sed s/bin\\/octoprint3/bin\\/octoprint/ &amp;gt; octoprint3 chmod 755 octoprint3 sed s/octoprint/octoprint4/ &amp;lt; octoprint | sed s/OctoPrint/OctoPrint4/ | sed s/bin\\/octoprint4/bin\\/octoprint/ &amp;gt; octoprint4 chmod 755 octoprint4 cd /etc/default sed s/PORT=5000/PORT=5001/ &amp;lt; octoprint | sed s/HOST=127.</description>
     </item>
     
   </channel>
