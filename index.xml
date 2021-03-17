@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>msquare-2 blog</title>
+    <link>http://msquare-2.github.io/</link>
+    <description>Recent content on msquare-2 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Mar 2021 13:20:49 +0530</lastBuildDate><atom:link href="http://msquare-2.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>This is the post title</title>
+      <link>http://msquare-2.github.io/posts/post/</link>
+      <pubDate>Wed, 17 Mar 2021 13:20:49 +0530</pubDate>
+      
+      <guid>http://msquare-2.github.io/posts/post/</guid>
+      <description>This is some content
+public static void main(String[]args){ system.out.println(&amp;#34;This is a print statement&amp;#34;); } </description>
+    </item>
+    
+  </channel>
+</rss>
